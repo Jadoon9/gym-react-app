@@ -7,7 +7,6 @@ const FormData = ({
   textData,
   textChangeHandler,
   languageChangeHandler,
-  editHandler,
 }) => {
   return (
     <Paper

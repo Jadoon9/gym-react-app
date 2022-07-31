@@ -19,25 +19,9 @@ const Practice = () => {
 
     //* Edit the individual input item
     if (index !== undefined) {
-      const item = formData[index];
-
-      console.log('ddd', item);
-      // const monthlyTimeSeries = Object.values(obj["Monthly Time Series"]);
-      // setFormData((prev) => ({
-      //   ...prev,
-      //   textData: e.target.value,
-      // }));
-      setFormData([...formData, (item.textData = e.target.value)]);
-
-      // console.log('eeeeeeeeeee', { textData: e.target.value });
-      // const test = [...formData, item.textData];
-      // console.log('testttt', test);
-      // setFormData(formData => ({...formData, item.textData : e.target.value}))
-      // const updated = (item.textData = e.target.value);
-      // setFormData((formData) => ({ ...formData, formData[index].textData : e.target.value })
-      // formData.map((item, indexx) => ({ ...item, textData: e.target.value }))
-      // );
-      // console.log(item, 'itemsadadas');
+      settextData(e.target.value);
+      formData[index] = { textData: e.target.value };
+      // const item = formData[index];
     }
   };
 

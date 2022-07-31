@@ -2,16 +2,15 @@ import React from 'react';
 import { Autocomplete, Button, Paper, Stack, TextField } from '@mui/material';
 
 const FormData = ({
-  index,
-  item,
   languages,
+  language,
+  textData,
   textChangeHandler,
   languageChangeHandler,
-  indexChangeHandler,
+  editHandler,
 }) => {
   return (
     <Paper
-      key={index}
       variant='outlined'
       sx={{
         paddingInline: '4rem',
@@ -23,24 +22,21 @@ const FormData = ({
         <Stack direction='row' spacing={2} alignItems='center'>
           <TextField
             fullWidth
-            value={item?.textData}
+            value={textData}
             onChange={(e) => {
-              textChangeHandler(e, index);
+              textChangeHandler(e);
             }}
           />
-
-          <Button variant='outlined' size='large'>
-            Update
-          </Button>
         </Stack>
         <Autocomplete
           disablePortal
           id='combo-box-demo'
-          value={item?.language}
+          value={language}
           options={languages}
           sx={{ width: 300 }}
           onChange={(e, value) => {
-            languageChangeHandler(value, index);
+            // indexChangeHandler(index)
+            languageChangeHandler(value);
           }}
           renderInput={(params) => <TextField {...params} label='Movie' />}
         />

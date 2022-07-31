@@ -1,38 +1,40 @@
 import React, { useState } from 'react';
 import { Autocomplete, Button, Paper, Stack, TextField } from '@mui/material';
 import FormData from '../components/FormData';
+import FormData1 from '../components/FormData1';
 
 const Practice = () => {
   const [formData, setFormData] = useState([]);
   const [textData, settextData] = useState('');
   const [language, setLanguage] = useState('');
-  const [index, setIndex] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
 
   const languages = ['English', 'French', 'Turkish', 'German'];
 
   const textChangeHandler = (e, index) => {
-    console.log('indexoftoucedelement', index);
-    settextData(e.target.value);
+    if (index === undefined) {
+      console.log('indexoftoucedelement', index);
+      settextData(e.target.value);
+    }
+
+    if (index !== undefined) {
+      // const item = formData[index];
+      // const updated = (item.textData = e.target.value);
+      setFormData([...formData, formData[(index.textData = e.target.value)]]);
+      // console.log(item, 'itemsadadas');
+    }
   };
 
-  const languageChangeHandler = (e) => {
+  const languageChangeHandler = (e, index) => {
     console.log('indexoftoucedelement', index);
     setLanguage(e);
   };
-
-  const indexChangeHandler = (e) => {
-    setIndex(e);
-    console.log('indexoftoucedelement', e);
-  };
-
-  console.log('index', index);
 
   const addHandler = (e) => {
     const data = {
       textData,
       language,
     };
+
     // setFormData((prevState) => [...prevState, data]);
     setFormData([...formData, data]);
     settextData('');
@@ -40,17 +42,14 @@ const Practice = () => {
   };
 
   const editHandler = (e) => {
-    const indexxxx = formData?.findIndex(
-      (elem, elemIndex) => elemIndex === index
-    );
+    // const indexxxx = formData?.map((elem) => elem[index]);
     // const formText = formData[indexxxx];
-
-    console.log(indexxxx, 'formText');
+    // console.log(indexxxx, 'formText');
   };
 
   const updateHandler = () => {};
 
-  console.log(formData, 'formData');
+  console.log(formData, 'danggeeerrr');
   return (
     <>
       <Stack>
@@ -72,13 +71,13 @@ const Practice = () => {
             Add
           </Button>
         </Stack>
-        <FormData
+        <FormData1
           languages={languages}
+          language={language}
+          textData={textData}
           textChangeHandler={textChangeHandler}
           languageChangeHandler={languageChangeHandler}
           addHandler={addHandler}
-          indexChangeHandler={indexChangeHandler}
-          editHandler={editHandler}
         />
 
         {formData?.map?.((item, index) => {
@@ -91,8 +90,6 @@ const Practice = () => {
               textChangeHandler={textChangeHandler}
               languageChangeHandler={languageChangeHandler}
               addHandler={addHandler}
-              indexChangeHandler={indexChangeHandler}
-              editHandler={editHandler}
             />
           );
         })}
